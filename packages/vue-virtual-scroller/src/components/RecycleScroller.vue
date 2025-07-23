@@ -618,8 +618,8 @@ export default {
       }
     },
 
-    getListenerTarget () {
-      let target = getScrollParent(this.$el)
+    async getListenerTarget () {
+      let target = await getScrollParent(this.$el)
       // Fix global scroll target for Chrome and Safari
       if (window.document && (target === window.document.documentElement || target === window.document.body)) {
         target = window
@@ -671,8 +671,8 @@ export default {
       }
     },
 
-    addListeners () {
-      this.listenerTarget = this.getListenerTarget()
+    async addListeners () {
+      this.listenerTarget = await this.getListenerTarget()
       this.listenerTarget.addEventListener('scroll', this.handleScroll, supportsPassive()
         ? {
             passive: true,
@@ -703,7 +703,7 @@ export default {
       this.scrollToPosition(scroll)
     },
 
-    scrollToPosition (position) {
+    async scrollToPosition (position) {
       const direction = this.direction === 'vertical'
         ? { scroll: 'scrollTop', start: 'top' }
         : { scroll: 'scrollLeft', start: 'left' }
@@ -713,7 +713,7 @@ export default {
       let scrollDistance
 
       if (this.pageMode) {
-        const viewportEl = getScrollParent(this.$el)
+        const viewportEl = await getScrollParent(this.$el)
         // HTML doesn't overflow like other elements
         const scrollTop = viewportEl.tagName === 'HTML' ? 0 : viewportEl[direction.scroll]
         const bounds = viewportEl.getBoundingClientRect()

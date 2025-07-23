@@ -3,9 +3,9 @@
 
 const regex = /auto|scroll/
 
-function parents(node, ps) {
+async function parents(node, ps) {
   if (node.tagName === 'ION-CONTENT') {
-    ps = ps.concat([node.scrollEl])
+    ps = ps.concat([await node.getScrollElement()])
   }
 
   if (node.parentNode === null) {
@@ -27,12 +27,12 @@ function scroll(node) {
   return regex.test(overflow(node))
 }
 
-export function getScrollParent(node) {
+export async function getScrollParent(node) {
   if (!(node instanceof HTMLElement || node instanceof SVGElement)) {
     return
   }
 
-  const ps = parents(node.parentNode, [])
+  const ps = await parents(node.parentNode, [])
 
   for (let i = 0; i < ps.length; i += 1) {
     if (scroll(ps[i])) {
