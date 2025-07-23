@@ -692,7 +692,7 @@ export default {
       this.listenerTarget = null
     },
 
-    scrollToItem (index) {
+    scrollToItem (index, offset = 0) {
       let scroll
       const gridItems = this.gridItems || 1
       if (this.itemSize === null) {
@@ -700,7 +700,7 @@ export default {
       } else {
         scroll = Math.floor(index / gridItems) * this.itemSize
       }
-      this.scrollToPosition(scroll)
+      this.scrollToPosition(scroll + offset)
     },
 
     async scrollToPosition (position) {

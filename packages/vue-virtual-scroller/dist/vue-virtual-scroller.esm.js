@@ -1110,7 +1110,7 @@ var script$2 = {
       this.listenerTarget = null;
     },
 
-    scrollToItem (index) {
+    scrollToItem (index, offset = 0) {
       let scroll;
       const gridItems = this.gridItems || 1;
       if (this.itemSize === null) {
@@ -1118,7 +1118,7 @@ var script$2 = {
       } else {
         scroll = Math.floor(index / gridItems) * this.itemSize;
       }
-      this.scrollToPosition(scroll);
+      this.scrollToPosition(scroll + offset);
     },
 
     async scrollToPosition (position) {
