@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "pnpm run -r --filter=!demo build",
-    "release": "pnpm run lint && pnpm run build && sheep release -b main --force",
+    "release": "pnpm run lint && pnpm run build",
     "lint": "eslint --cache"
   },
   "devDependencies": {

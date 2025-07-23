@@ -1,8 +1,13 @@
+// CUSTOMIZED: with additional ion-content support
 // Fork of https://github.com/olahol/scrollparent.js to be able to build with Rollup
 
 const regex = /auto|scroll/
 
 function parents(node, ps) {
+  if (node.tagName === 'ION-CONTENT') {
+    ps = ps.concat([node.scrollEl])
+  }
+
   if (node.parentNode === null) {
     return ps
   }
